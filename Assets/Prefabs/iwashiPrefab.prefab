@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6295287580599128446}
   - component: {fileID: 6374963796827006252}
   m_Layer: 0
-  m_Name: iwashi
+  m_Name: iwashiPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6295287580599128439}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f45c19665a3fea419393df4345ca221, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a1a38ea4e155724988a689fe52bc736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &6295287580599128433
