@@ -15,6 +15,9 @@ public class IwashiGenerator : MonoBehaviour
     void Start()
     {
         StartCoroutine(Generator());
+
+        // Test to load from ParamsSO
+        Debug.Log($"Score: {ParamsSO.Entity.score}");
     }
 
     // Update is called once per frame
