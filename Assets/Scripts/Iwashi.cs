@@ -21,13 +21,6 @@ public class Iwashi : MonoBehaviour
         v.x = Mathf.Cos(Mathf.Deg2Rad * ang) * spd;
         v.y = Mathf.Sin(Mathf.Deg2Rad * ang) * spd;
         GetComponent<Rigidbody2D>().velocity = v;
-
-        // Get default scale
-        Vector3 scale = transform.localScale;
-        default_scale_x = scale.x;
-
-        Debug.Log($"scale :{default_scale_x}");
-
     }
 
     void Update()
