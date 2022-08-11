@@ -25,8 +25,20 @@ public class Iwashi : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Update");
+        //Debug.Log("Update");
         fixDirection();
+
+        //左クリックを押した時
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("クリックされたよ！");
+        }
+
+        //左クリックを話した時
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("クリック解除！");
+        }
     }
 
     // Flop Image by speed for x-axies
