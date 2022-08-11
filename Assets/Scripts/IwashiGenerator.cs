@@ -20,7 +20,17 @@ public class IwashiGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //左クリックを押した時
+        if (Input.GetMouseButtonDown(0))
+        {
+            // GetObject with Beam(from mouse)
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+            if (hit)
+            {
+                Debug.Log("RaycastHit2D: Clicked！" + hit.collider.gameObject.name);
+            }
+        }
     }
 
     IEnumerator Generator()

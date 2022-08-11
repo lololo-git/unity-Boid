@@ -7,8 +7,6 @@ public class Iwashi : MonoBehaviour
 
     BoidSettings settings;
 
-    private float default_scale_x = 1;
-
     void Start()
     {
         Debug.Log("Start");
@@ -25,20 +23,16 @@ public class Iwashi : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log("Update");
+        // Debug.Log("Update");
         fixDirection();
 
-        //左クリックを押した時
+        //Click and show speeds for debug
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("クリックされたよ！");
+            Vector2 v = GetComponent<Rigidbody2D>().velocity;
+            Debug.Log($"Iwashi_velocity x:{v.x} y:{v.y}");
         }
 
-        //左クリックを話した時
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("クリック解除！");
-        }
     }
 
     // Flop Image by speed for x-axies
