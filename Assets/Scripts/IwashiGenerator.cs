@@ -1,18 +1,17 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class IwashiGenerator : MonoBehaviour
 {
-    BoidSettings settings;
+    private BoidSettings settings;
     public const int IWASHI_NUM = 10;
 
     [SerializeField] private GameObject iwashiPrefab;
     private GameObject[] iwashis = new GameObject[IWASHI_NUM];
 
-
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         StartCoroutine(Generator());
 
@@ -21,9 +20,9 @@ public class IwashiGenerator : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //¶ƒNƒŠƒbƒN‚ğ‰Ÿ‚µ‚½
+        //å·¦ã‚¯ãƒªãƒƒã‚¯ã‚’æŠ¼ã—ãŸæ™‚
         if (Input.GetMouseButtonDown(0))
         {
             // GetObject with Beam(from mouse)
@@ -31,12 +30,12 @@ public class IwashiGenerator : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             if (hit)
             {
-                Debug.Log("RaycastHit2D: ClickedI" + hit.collider.gameObject.name);
+                Debug.Log("RaycastHit2D: Clickedï¼" + hit.collider.gameObject.name);
             }
         }
     }
 
-    IEnumerator Generator()
+    private IEnumerator Generator()
     {
         Vector2 pos;
         for (int i = 0; i < IWASHI_NUM; i++)

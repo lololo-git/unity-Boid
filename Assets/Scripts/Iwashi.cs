@@ -1,13 +1,12 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Iwashi : MonoBehaviour
 {
+    private BoidSettings settings;
 
-    BoidSettings settings;
-
-    void Start()
+    private void Start()
     {
         Debug.Log("Start");
 
@@ -21,7 +20,7 @@ public class Iwashi : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = v;
     }
 
-    void Update()
+    private void Update()
     {
         // Debug.Log("Update");
         fixDirection();
@@ -32,13 +31,11 @@ public class Iwashi : MonoBehaviour
             Vector2 v = GetComponent<Rigidbody2D>().velocity;
             Debug.Log($"Iwashi_velocity x:{v.x} y:{v.y}");
         }
-
     }
 
     // Flop Image by speed for x-axies
     private void fixDirection()
     {
-
         Vector3 scale = transform.localScale;
         float sx = transform.localScale.x;
         float vx = GetComponent<Rigidbody2D>().velocity.x;

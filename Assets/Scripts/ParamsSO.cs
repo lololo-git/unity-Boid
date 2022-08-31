@@ -1,7 +1,6 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 [CreateAssetMenu]
 public class ParamsSO : ScriptableObject
@@ -12,21 +11,22 @@ public class ParamsSO : ScriptableObject
     // Hack to acces SO easily
     // Copied from https://kan-kikuchi.hatenablog.com/entry/ScriptableObject_Entity
 
-    // MyScriptableObject‚ª•Û‘¶‚µ‚Ä‚ ‚éêŠ‚ÌƒpƒX
+    // MyScriptableObjectãŒä¿å­˜ã—ã¦ã‚ã‚‹å ´æ‰€ã®ãƒ‘ã‚¹
     public const string PATH = "ParamsSO";
 
-    // MyScriptableObject‚ÌÀ‘Ì
+    // MyScriptableObjectã®å®Ÿä½“
     private static ParamsSO _entity;
+
     public static ParamsSO Entity
     {
         get
         {
-            // ‰ƒAƒNƒZƒX‚Éƒ[ƒh‚·‚é
+            // åˆã‚¢ã‚¯ã‚»ã‚¹æ™‚ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
             if (_entity == null)
             {
                 _entity = Resources.Load<ParamsSO>(PATH);
 
-                // ƒ[ƒho—ˆ‚È‚©‚Á‚½ê‡‚ÍƒGƒ‰[ƒƒO‚ğ•\¦
+                // ãƒ­ãƒ¼ãƒ‰å‡ºæ¥ãªã‹ã£ãŸå ´åˆã¯ã‚¨ãƒ©ãƒ¼ãƒ­ã‚°ã‚’è¡¨ç¤º
                 if (_entity == null)
                 {
                     Debug.LogError(PATH + " not found");
