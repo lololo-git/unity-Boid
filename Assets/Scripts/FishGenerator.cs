@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IwashiGenerator : MonoBehaviour
+public class FishGenerator : MonoBehaviour
 {
-    [SerializeField] private GameObject iwashiPrefab;
+    [SerializeField] private GameObject sardinePrefab;
 
     private void Start()
     {
@@ -20,19 +20,18 @@ public class IwashiGenerator : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
             if (hit)
             {
-                Debug.Log("RaycastHit2D: Clicked！" + hit.collider.gameObject.name);
+                Debug.Log("RaycastHit2D: Clicked!" + hit.collider.gameObject.name);
             }
         }
     }
 
     public IEnumerator Spawn(int num)
     {
-        Debug.Log(num);
         Vector2 pos;
         for (int i = 0; i < num; i++)
         {
             pos = new Vector2(Random.Range(-3, 3), Random.Range(-3, 3));
-            Instantiate(iwashiPrefab, pos, transform.rotation);
+            Instantiate(sardinePrefab, pos, transform.rotation);
 
             yield return new WaitForSeconds(1f);
         }

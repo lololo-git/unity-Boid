@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Iwashi : MonoBehaviour
+public class Sardine : MonoBehaviour
 {
     private void Start()
     {
@@ -27,7 +27,7 @@ public class Iwashi : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 v = GetComponent<Rigidbody2D>().velocity;
-            Debug.Log($"Iwashi_velocity x:{v.x} y:{v.y}");
+            Debug.Log($"Sardine_velocity x:{v.x} y:{v.y}");
         }
     }
 
@@ -50,7 +50,7 @@ public class Iwashi : MonoBehaviour
 
     public void onClickIwashi()
     {
-        Debug.Log("OnClickIwashi");
+        Debug.Log("OnClickSardine");
         Destroy(this.gameObject);
     }
 }

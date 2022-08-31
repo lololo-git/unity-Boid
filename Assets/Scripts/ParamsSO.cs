@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ParamsSO : ScriptableObject
 {
-    [Header("Game Score")]
-    public int iwashiNum;
+    [Header("default num of sardines")]
+    public int sardineNum;
 
     // Singleton
     public const string PATH = "ParamsSO";

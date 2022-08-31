@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6295287580599128433}
   - component: {fileID: 6374963796827006252}
   m_Layer: 0
-  m_Name: iwashiPrefab
+  m_Name: sardinePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
