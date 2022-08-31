@@ -4,22 +4,12 @@ using UnityEngine;
 
 public class IwashiGenerator : MonoBehaviour
 {
-    private BoidSettings settings;
-    public const int IWASHI_NUM = 10;
-
     [SerializeField] private GameObject iwashiPrefab;
-    private GameObject[] iwashis = new GameObject[IWASHI_NUM];
 
-    // Start is called before the first frame update
     private void Start()
     {
-        StartCoroutine(Generator());
-
-        // Test to load from ParamsSO
-        Debug.Log($"Score: {ParamsSO.Entity.score}");
     }
 
-    // Update is called once per frame
     private void Update()
     {
         //左クリックを押した時
@@ -35,13 +25,14 @@ public class IwashiGenerator : MonoBehaviour
         }
     }
 
-    private IEnumerator Generator()
+    public IEnumerator Spawn(int num)
     {
+        Debug.Log(num);
         Vector2 pos;
-        for (int i = 0; i < IWASHI_NUM; i++)
+        for (int i = 0; i < num; i++)
         {
-            pos = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
-            iwashis[i] = Instantiate(iwashiPrefab, pos, transform.rotation);
+            pos = new Vector2(Random.Range(-3, 3), Random.Range(-3, 3));
+            Instantiate(iwashiPrefab, pos, transform.rotation);
 
             yield return new WaitForSeconds(1f);
         }

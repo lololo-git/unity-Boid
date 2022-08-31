@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Iwashi : MonoBehaviour
 {
-    private BoidSettings settings;
-
     private void Start()
     {
         Debug.Log("Start");
