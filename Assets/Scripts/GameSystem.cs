@@ -24,7 +24,7 @@ public class GameSystem : MonoBehaviour
         Sardine sardine = GetPointedSardine();
         if (sardine)
         {
-            Debug.Log(sardine);
+            sardine.randomizeSpeed();
         }
     }
 

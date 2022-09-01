@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ParamsSO
   m_EditorClassIdentifier: 
   sardineNum: 10
+  sardineSpeed: 3

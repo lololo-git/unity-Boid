@@ -8,6 +8,9 @@ public class ParamsSO : ScriptableObject
     [Header("default num of sardines")]
     public int sardineNum;
 
+    [Header("speed for sardines")]
+    public int sardineSpeed;
+
     // Singleton
     public const string PATH = "ParamsSO";
 
