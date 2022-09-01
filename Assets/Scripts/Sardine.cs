@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Sardine : MonoBehaviour
 {
-    private Rigidbody2D rb;
+    private Rigidbody2D _rigidbody2D;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         randomizeSpeed();
     }
 
     private void FixedUpdate()
     {
+        var rb = GetRigidbody2D();
+
         Vector3 sxf = GetStrongXForce();
         rb.AddForce(sxf);
 
@@ -23,7 +24,14 @@ public class Sardine : MonoBehaviour
         fixDirection();
     }
 
-    public void randomizeSpeed()
+    private Rigidbody2D GetRigidbody2D()
+    {
+        if (this._rigidbody2D == null)
+            this._rigidbody2D = GetComponent<Rigidbody2D>();
+        return this._rigidbody2D;
+    }
+
+    public void randomizeSpeed(bool useForce = true)
     {
         // init speed
         float ang = Random.Range(0, 359);
@@ -32,12 +40,16 @@ public class Sardine : MonoBehaviour
         Vector2 v;
         v.x = Mathf.Cos(Mathf.Deg2Rad * ang) * spd;
         v.y = Mathf.Sin(Mathf.Deg2Rad * ang) * spd;
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = v;
+
+        if (useForce)
+            GetRigidbody2D().AddForce(v);
+        else
+            GetRigidbody2D().velocity = v;
     }
 
     private Vector3 GetStrongXForce()
     {
+        var rb = GetRigidbody2D();
         Vector3 v = rb.velocity;
         if (v.x < v.y * 2)
         {
@@ -51,7 +63,8 @@ public class Sardine : MonoBehaviour
 
     private Vector3 GetKeepSpeedForce()
     {
-        Vector3 v = this.rb.velocity;
+        var rb = GetRigidbody2D();
+        Vector3 v = rb.velocity;
         float rat = ParamsSO.Entity.sardineSpeed - v.magnitude;
 
         return v * rat;
@@ -60,9 +73,10 @@ public class Sardine : MonoBehaviour
     // Flip Image by speed for x-axies
     private void fixDirection()
     {
+        var rb = GetRigidbody2D();
         Vector3 scale = transform.localScale;
         float sx = transform.localScale.x;
-        float vx = this.rb.velocity.x;
+        float vx = rb.velocity.x;
 
         // ignore small speed to avoid flipping chain
         if (Mathf.Abs(vx) < 0.001)
@@ -78,8 +92,9 @@ public class Sardine : MonoBehaviour
 
     private float GetDirectionX()
     {
+        var rb = GetRigidbody2D();
         //want 1 from "0"
-        float f = Mathf.Sign(this.rb.velocity.x);
+        float f = Mathf.Sign(rb.velocity.x);
         if (f == 0)
             return 1f;
         return f;

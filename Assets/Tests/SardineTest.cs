@@ -35,11 +35,19 @@ public class SardineTest
     public void RandomizedSpeedTest()
     {
         Rigidbody2D rb = sardine.GetComponent<Rigidbody2D>();
+        float x1, x2;
+        bool useForce;
 
-        var x1 = rb.velocity.x;
-        sardine.randomizeSpeed();
-        var x2 = rb.velocity.x;
-
+        useForce = false;
+        x1 = rb.velocity.x;
+        sardine.randomizeSpeed(useForce);
+        x2 = rb.velocity.x;
         Assert.That(x1, Is.Not.EqualTo(x2));
+
+        useForce = true;
+        x1 = rb.velocity.x;
+        sardine.randomizeSpeed(useForce);
+        x2 = rb.velocity.x;
+        Assert.That(x1, Is.EqualTo(x2));
     }
 }
