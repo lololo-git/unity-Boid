@@ -32,7 +32,8 @@ public class Sardine : MonoBehaviour
         Vector2 v;
         v.x = Mathf.Cos(Mathf.Deg2Rad * ang) * spd;
         v.y = Mathf.Sin(Mathf.Deg2Rad * ang) * spd;
-        this.rb.velocity = v;
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = v;
     }
 
     private Vector3 GetStrongXForce()
