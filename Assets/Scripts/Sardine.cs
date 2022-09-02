@@ -24,13 +24,6 @@ public class Sardine : MonoBehaviour
         fixDirection();
     }
 
-    private Rigidbody2D GetRigidbody2D()
-    {
-        if (this._rigidbody2D == null)
-            this._rigidbody2D = GetComponent<Rigidbody2D>();
-        return this._rigidbody2D;
-    }
-
     public void randomizeSpeed(bool useForce = true)
     {
         // init speed
@@ -90,13 +83,18 @@ public class Sardine : MonoBehaviour
         transform.localScale = scale;
     }
 
+    private Rigidbody2D GetRigidbody2D()
+    {
+        if (this._rigidbody2D == null)
+            this._rigidbody2D = GetComponent<Rigidbody2D>();
+        return this._rigidbody2D;
+    }
+
     private float GetDirectionX()
     {
-        var rb = GetRigidbody2D();
-        //want 1 from "0"
-        float f = Mathf.Sign(rb.velocity.x);
+        float f = Mathf.Sign(GetRigidbody2D().velocity.x);
         if (f == 0)
-            return 1f;
+            return 1f; // fix output -1 or 1
         return f;
     }
 }
