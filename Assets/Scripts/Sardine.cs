@@ -15,10 +15,10 @@ public class Sardine : MonoBehaviour
     {
         var rb = GetRigidbody2D();
 
-        Vector3 sxf = GetStrongXForce();
+        Vector2 sxf = GetStrongXForce();
         rb.AddForce(sxf);
 
-        Vector3 ksf = GetKeepSpeedForce();
+        Vector2 ksf = GetKeepSpeedForce();
         rb.AddForce(ksf);
 
         fixDirection();
@@ -40,36 +40,31 @@ public class Sardine : MonoBehaviour
             GetRigidbody2D().velocity = v;
     }
 
-    private Vector3 GetStrongXForce()
+    private Vector2 GetStrongXForce()
     {
-        var rb = GetRigidbody2D();
-        Vector3 v = rb.velocity;
+        Vector2 v = GetRigidbody2D().velocity;
         if (v.x < v.y * 2)
         {
-            Debug.Log("fix x speed " + v);
             float xs = ParamsSO.Entity.sardineSpeed / 3 * this.GetDirectionX();
-            v = new Vector3(xs, 0, 0);
-            Debug.Log(v);
+            v = new Vector2(xs, 0);
         }
         return v;
     }
 
-    private Vector3 GetKeepSpeedForce()
+    private Vector2 GetKeepSpeedForce()
     {
-        var rb = GetRigidbody2D();
-        Vector3 v = rb.velocity;
-        float rat = ParamsSO.Entity.sardineSpeed - v.magnitude;
+        Vector2 v = GetRigidbody2D().velocity;
+        float ratio = ParamsSO.Entity.sardineSpeed - v.magnitude;
 
-        return v * rat;
+        return v * ratio;
     }
 
     // Flip Image by speed for x-axies
     private void fixDirection()
     {
-        var rb = GetRigidbody2D();
-        Vector3 scale = transform.localScale;
+        Vector2 scale = transform.localScale;
         float sx = transform.localScale.x;
-        float vx = rb.velocity.x;
+        float vx = GetRigidbody2D().velocity.x;
 
         // ignore small speed to avoid flipping chain
         if (Mathf.Abs(vx) < 0.001)
