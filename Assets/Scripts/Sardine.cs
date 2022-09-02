@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Sardine : MonoBehaviour
 {
+    // list of all sardines to watch
+    private List<Sardine> sardineList = default;
+
+    // hold rigidbody to reduce calling GetComponent
     private Rigidbody2D _rigidbody2D;
 
     private void Start()
@@ -22,6 +26,11 @@ public class Sardine : MonoBehaviour
         rb.AddForce(ksf);
 
         fixDirection();
+    }
+
+    public void SetSardineList(List<Sardine> _sardineList)
+    {
+        sardineList = _sardineList;
     }
 
     public void randomizeSpeed(bool useForce = true)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FishGenerator : MonoBehaviour
 {
     [SerializeField] private GameObject sardinePrefab;
+    private List<Sardine> sardines = new List<Sardine>();
 
     public IEnumerator Spawn(int num)
     {
@@ -12,9 +13,18 @@ public class FishGenerator : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             pos = new Vector2(Random.Range(-3, 3), Random.Range(-3, 3));
-            Instantiate(sardinePrefab, pos, transform.rotation);
+            GameObject obj = Instantiate(sardinePrefab, pos, transform.rotation);
+            Sardine ins = obj.GetComponent<Sardine>();
+
+            sardines.Add(ins);
+            ins.SetSardineList(sardines);
 
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    public List<Sardine> GetSardineList()
+    {
+        return sardines;
     }
 }
