@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class GameSystem : MonoBehaviour
 {
-    [SerializeField] private FishGenerator fishGenerator = default;
+    [SerializeField] private FishManager fishManager = default;
 
     private void Start()
     {
-        StartCoroutine(fishGenerator.Spawn(ParamsSO.Entity.sardineNum));
+        StartCoroutine(fishManager.Spawn(ParamsSO.Entity.sardineNum));
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -24,7 +24,7 @@ public class GameSystem : MonoBehaviour
         Sardine sardine = GetPointedSardine();
         if (sardine)
         {
-            sardine.randomizeSpeed();
+            sardine.RandomizeSpeed();
         }
     }
 

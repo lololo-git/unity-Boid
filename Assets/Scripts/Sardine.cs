@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class Sardine : MonoBehaviour
 {
-    // list of all sardines to watch
+    private int id;
+    private FishManager fishManager = default;
     private List<Sardine> sardineList = default;
 
     // hold rigidbody to reduce calling GetComponent
     private Rigidbody2D _rigidbody2D;
 
+    public void SetFishManager(FishManager fm)
+    {
+        this.fishManager = fm;
+    }
+
     private void Start()
     {
-        randomizeSpeed();
+        RandomizeSpeed();
     }
 
     private void FixedUpdate()
     {
+        if (fishManager != null)
+        {
+            List<Sardine> nears = fishManager.GetSardinesByRange(this, 5);
+            Debug.Log(nears);
+        }
+
         var rb = GetRigidbody2D();
 
         Vector2 sxf = GetStrongXForce();
@@ -28,12 +40,22 @@ public class Sardine : MonoBehaviour
         fixDirection();
     }
 
-    public void SetSardineList(List<Sardine> _sardineList)
+    public int GetID()
     {
-        sardineList = _sardineList;
+        return this.id;
     }
 
-    public void randomizeSpeed(bool useForce = true)
+    public void SetID(int _id)
+    {
+        this.id = _id;
+    }
+
+    public void SetSardineList(List<Sardine> _sardineList)
+    {
+        this.sardineList = _sardineList;
+    }
+
+    public void RandomizeSpeed(bool useForce = true)
     {
         // init speed
         float ang = Random.Range(0, 359);

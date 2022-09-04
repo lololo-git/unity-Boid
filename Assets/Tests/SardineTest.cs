@@ -9,6 +9,7 @@ public class SardineTest
 {
     private Sardine prefab = default;
     private Sardine sardine = default;
+    private Sardine sardine_sub = default;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
@@ -22,6 +23,7 @@ public class SardineTest
     {
         Debug.Log("SetUp");
         sardine = GameObject.Instantiate(prefab);
+        sardine_sub = GameObject.Instantiate(prefab);
     }
 
     [TearDown]
@@ -29,6 +31,16 @@ public class SardineTest
     {
         Debug.Log("TearDown");
         GameObject.DestroyImmediate(sardine);
+        GameObject.DestroyImmediate(sardine_sub);
+    }
+
+    [Test]
+    public void SetAndGetIDTest()
+    {
+        int expect = 100;
+        sardine.SetID(expect);
+        int actual = sardine.GetID();
+        Assert.That(actual, Is.EqualTo(expect));
     }
 
     [Test]
@@ -40,13 +52,13 @@ public class SardineTest
 
         useForce = false;
         x1 = rb.velocity.x;
-        sardine.randomizeSpeed(useForce);
+        sardine.RandomizeSpeed(useForce);
         x2 = rb.velocity.x;
         Assert.That(x1, Is.Not.EqualTo(x2));
 
         useForce = true;
         x1 = rb.velocity.x;
-        sardine.randomizeSpeed(useForce);
+        sardine.RandomizeSpeed(useForce);
         x2 = rb.velocity.x;
         Assert.That(x1, Is.EqualTo(x2));
     }

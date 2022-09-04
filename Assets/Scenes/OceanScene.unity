@@ -359,7 +359,7 @@ GameObject:
   - component: {fileID: 1644168790}
   - component: {fileID: 1644168789}
   m_Layer: 0
-  m_Name: FishGenerator
+  m_Name: FishManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,7 +374,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1644168788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43d3fd19f5b3bd143b150e6b427b0a88, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b9b57950319943489be2f9e7e82f33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sardinePrefab: {fileID: 6295287580599128439, guid: 91368ac973b01ee49886d05d3cb36492, type: 3}
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e41bcaab4cb0e9d46a6e5e384800ca57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishGenerator: {fileID: 1644168789}
+  fishManager: {fileID: 1644168789}
 --- !u!4 &1644519094
 Transform:
   m_ObjectHideFlags: 0
