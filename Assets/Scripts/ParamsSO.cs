@@ -11,6 +11,13 @@ public class ParamsSO : ScriptableObject
     [Header("speed for sardines")]
     public int sardineSpeed;
 
+    [Header("Range of sardines to gather")]
+    public int cohesionRange;
+
+    [Header("Gathering power")]
+    [Range(0f, 5f)]
+    public float cohesionPower;
+
     // Singleton
     public const string PATH = "ParamsSO";
 

@@ -11,11 +11,6 @@ public class Sardine : MonoBehaviour
     // hold rigidbody to reduce calling GetComponent
     private Rigidbody2D _rigidbody2D;
 
-    public void SetFishManager(FishManager fm)
-    {
-        this.fishManager = fm;
-    }
-
     private void Start()
     {
         RandomizeSpeed();
@@ -23,13 +18,13 @@ public class Sardine : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (fishManager != null)
-        {
-            List<Sardine> nears = fishManager.GetSardinesByRange(this, 5);
-            Debug.Log(nears);
-        }
+        if (fishManager == null)
+            return;
 
         var rb = GetRigidbody2D();
+
+        Vector2 cf = GetCohesionForce();
+        rb.AddForce(cf);
 
         Vector2 sxf = GetStrongXForce();
         rb.AddForce(sxf);
@@ -38,21 +33,6 @@ public class Sardine : MonoBehaviour
         rb.AddForce(ksf);
 
         fixDirection();
-    }
-
-    public int GetID()
-    {
-        return this.id;
-    }
-
-    public void SetID(int _id)
-    {
-        this.id = _id;
-    }
-
-    public void SetSardineList(List<Sardine> _sardineList)
-    {
-        this.sardineList = _sardineList;
     }
 
     public void RandomizeSpeed(bool useForce = true)
@@ -69,6 +49,22 @@ public class Sardine : MonoBehaviour
             GetRigidbody2D().AddForce(v);
         else
             GetRigidbody2D().velocity = v;
+    }
+
+    private Vector2 GetCohesionForce()
+    {
+        List<Sardine> sardines = fishManager.GetSardinesByRange(
+            this, ParamsSO.Entity.cohesionRange);
+
+        // Use 3 to deal with position.
+        Vector3 centerPoint = new Vector2();
+        foreach (Sardine sardine in sardines)
+        {
+            centerPoint += sardine.transform.position;
+        }
+        centerPoint /= sardines.Count;
+
+        return (centerPoint - transform.position) * ParamsSO.Entity.cohesionPower;
     }
 
     private Vector2 GetStrongXForce()
@@ -109,6 +105,27 @@ public class Sardine : MonoBehaviour
         transform.localScale = scale;
     }
 
+    public int GetID()
+    {
+        return this.id;
+    }
+
+    public void SetID(int _id)
+    {
+        this.id = _id;
+    }
+
+    public void SetFishManager(FishManager fm)
+    {
+        this.fishManager = fm;
+    }
+
+    public void SetSardineList(List<Sardine> _sardineList)
+    {
+        this.sardineList = _sardineList;
+    }
+
+    // Use local rigidbody. Avoid calling GetComponent()
     private Rigidbody2D GetRigidbody2D()
     {
         if (this._rigidbody2D == null)
